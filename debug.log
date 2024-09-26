@@ -1,0 +1,42 @@
+[0926/161246.514:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/161249.680:ERROR:gl_utils.cc(426)] [.WebGL-00000D0400684700]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/161250.918:ERROR:gl_utils.cc(426)] [.WebGL-00000D0402D5A300]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/191525.573:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/191532.197:ERROR:gl_utils.cc(426)] [.WebGL-000051D400695B00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/191533.332:ERROR:gl_utils.cc(426)] [.WebGL-000051D40264A900]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/192747.671:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/192753.666:ERROR:gl_utils.cc(426)] [.WebGL-00000374021B4700]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/192755.315:ERROR:gl_utils.cc(426)] [.WebGL-00000374021B5C00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/195033.816:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/195040.610:ERROR:gl_utils.cc(426)] [.WebGL-0000298402484E00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/195042.027:ERROR:gl_utils.cc(426)] [.WebGL-0000298400664000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/195251.274:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/195254.668:ERROR:gl_utils.cc(426)] [.WebGL-0000159400674D00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/195256.395:ERROR:gl_utils.cc(426)] [.WebGL-0000159400671C00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/195417.483:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/195421.309:ERROR:gl_utils.cc(426)] [.WebGL-0000647C02100700]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/195422.817:ERROR:gl_utils.cc(426)] [.WebGL-0000647C02C61500]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/195516.477:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/195520.900:ERROR:gl_utils.cc(426)] [.WebGL-00006E5C0214CE00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/195522.463:ERROR:gl_utils.cc(426)] [.WebGL-00006E5C029F4E00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/195827.927:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/195833.712:ERROR:gl_utils.cc(426)] [.WebGL-00000E340212C700]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/195835.142:ERROR:gl_utils.cc(426)] [.WebGL-00000E3402EF3100]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/200038.267:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/200041.093:ERROR:gl_utils.cc(426)] [.WebGL-0000500400677F00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/200042.362:ERROR:gl_utils.cc(426)] [.WebGL-0000500400674700]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/200633.499:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/200636.611:ERROR:gl_utils.cc(426)] [.WebGL-0000375C00671B00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/200638.157:ERROR:gl_utils.cc(426)] [.WebGL-0000375C00670600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/200922.659:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/200926.220:ERROR:gl_utils.cc(426)] [.WebGL-0000449402094000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/200927.758:ERROR:gl_utils.cc(426)] [.WebGL-000044940067D500]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/201803.645:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/201813.270:ERROR:gl_utils.cc(426)] [.WebGL-000011D40218C000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/201814.471:ERROR:gl_utils.cc(426)] [.WebGL-000011D402192900]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/202158.791:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/202202.294:ERROR:gl_utils.cc(426)] [.WebGL-0000766400688E00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/202203.826:ERROR:gl_utils.cc(426)] [.WebGL-00007664000D8D00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/202518.690:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+[0926/202523.544:ERROR:gl_utils.cc(426)] [.WebGL-000039C400679B00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[0926/202525.221:ERROR:gl_utils.cc(426)] [.WebGL-000039C4021DC600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
