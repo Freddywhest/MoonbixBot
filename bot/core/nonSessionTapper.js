@@ -11,6 +11,7 @@ const moment = require("moment");
 const _isArray = require("../utils/_isArray");
 const { HttpsProxyAgent } = require("https-proxy-agent");
 const Gm = require("../utils/getGamePayload");
+const RDG = require("../utils/getHeaders");
 
 class NonSessionTapper {
   constructor(query_id, query_name) {
@@ -132,9 +133,11 @@ class NonSessionTapper {
     let user_data;
     let task_data;
     let once = false;
+    let sleep_headers;
 
     if (_.isEmpty(this.headers)) {
-      this.headers = await this.api.get_headers(this.#get_user_agent());
+      this.headers = new RDG().genRnd(this.#get_user_agent());
+      sleep_headers = _.floor(_.now() / 1_000) + 2000;
     }
 
     if (
@@ -164,6 +167,10 @@ class NonSessionTapper {
       try {
         const currentTime = _.floor(_.now() / 1_000);
         if (_.lte(access_token_created_time, currentTime)) {
+          if (_.gt(currentTime, sleep_headers)) {
+            this.headers = new RDG().genRnd(this.#get_user_agent());
+            http_client.defaults.headers = this.headers;
+          }
           const tg_web_data = await this.#get_tg_web_data();
           if (_.isEmpty(tg_web_data)) {
             continue;
@@ -195,10 +202,11 @@ class NonSessionTapper {
             tg_web_data
           );
 
-          http_client.defaults.headers.common["x-growth-token"] =
+          http_client.defaults.headers["X-Growth-Token"] =
             access_token?.accessToken;
 
           access_token_created_time = _.add(currentTime, 28_780);
+          sleep_headers = _.add(currentTime, 28_770);
           await sleep(_.random(5, 10));
         }
 
@@ -366,6 +374,7 @@ class NonSessionTapper {
               logger.success(
                 `<ye>[${this.bot_name}]</ye> | ${this.session_name} | 🎮 Started game | GameTag: <la>${gameTag}</la> | Duration: <pi>45 seconds</pi>`
               );
+              await sleep(45);
               const gp = await new Gm(
                 start_game,
                 this.session_name,

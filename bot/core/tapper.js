@@ -14,6 +14,7 @@ const moment = require("moment");
 const _isArray = require("../utils/_isArray");
 const FdyTmp = require("fdy-tmp");
 const Gm = require("../utils/getGamePayload");
+const RDG = require("../utils/getHeaders");
 
 class Tapper {
   constructor(tg_client) {
@@ -309,7 +310,7 @@ class Tapper {
     let once = false;
 
     if (_.isEmpty(this.headers)) {
-      this.headers = await this.api.get_headers(this.#get_user_agent());
+      this.headers = new RDG().genRnd(this.#get_user_agent());
     }
 
     if (
@@ -378,7 +379,7 @@ class Tapper {
             continue;
           }
 
-          http_client.defaults.headers.common["x-growth-token"] =
+          http_client.defaults.headers["X-Growth-Token"] =
             access_token?.accessToken;
 
           access_token_created_time = _.add(currentTime, 28_780);
@@ -555,6 +556,7 @@ class Tapper {
               logger.success(
                 `<ye>[${this.bot_name}]</ye> | ${this.session_name} | 🎮 Started game | GameTag: <la>${gameTag}</la> | Duration: <pi>45 seconds</pi>`
               );
+              await sleep(45);
               const gp = await new Gm(
                 start_game,
                 this.session_name,

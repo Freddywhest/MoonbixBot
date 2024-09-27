@@ -1,5 +1,4 @@
 const app = require("../config/app");
-const getHeaders = require("../utils/getHeaders");
 const logger = require("../utils/logger");
 var _ = require("lodash");
 
@@ -120,18 +119,6 @@ class ApiRequest {
       }
 
       throw error;
-    }
-  }
-
-  async get_headers(user_agent) {
-    try {
-      const response = await getHeaders(user_agent);
-      return response;
-    } catch (error) {
-      logger.error(
-        `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Error while getting headers: ${error.message}`
-      );
-      return null;
     }
   }
 

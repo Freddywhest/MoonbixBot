@@ -1,7 +1,6 @@
 const _ = require("lodash");
 const CryptoJS = require("crypto-js");
 const logger = require("./logger");
-const sleep = require("./sleep");
 
 class Gm {
   #gr;
@@ -17,7 +16,7 @@ class Gm {
     this.#bn = bn;
   }
 
-  #rndDtTp(tp, et, sz, pts, py) {
+  #rndDtTp(et, tp, sz, pts, py) {
     let pt = this.#ct + this.#vs;
     if (pt >= et) {
       pt = et - 1000;
@@ -77,138 +76,148 @@ class Gm {
     return payload;
   }
 
-  #rndSel(isl, rlen) {
-    let sel = [];
-    let trapAdded = false;
-    let szCnt = {};
-    let itCnt = {};
-
-    let totRw = 0;
-
-    while (totRw < 100) {
-      sel = [];
-      trapAdded = false;
-      szCnt = {};
-      itCnt = {};
-
-      let shuff = _.shuffle(isl);
-
-      while (sel.length < rlen) {
-        let itm = _.sample(shuff);
-        const { type, size, rewardValueList, quantity } = itm;
-
-        let itmKey = `${type}_${size}`;
-
-        if (itCnt[itmKey] >= quantity) {
-          continue;
-        }
-
-        if (type === "TRAP" && trapAdded) {
-          continue;
-        }
-
-        if (szCnt[size] && szCnt[size] >= 2) {
-          continue;
-        }
-
-        let rwVal = _.sample(rewardValueList);
-
-        sel.push({
-          type,
-          quantity,
-          size,
-          rwVal,
-        });
-
-        itCnt[itmKey] = (itCnt[itmKey] || 0) + 1;
-        szCnt[size] = (szCnt[size] || 0) + 1;
-
-        if (type === "TRAP") {
-          trapAdded = true;
-        }
-      }
-
-      totRw = sel.reduce((sum, itm) => sum + itm.rwVal, 0);
-    }
-    return sel;
-  }
-
-  #getGp(isl) {
-    const et = Date.now() + 45000;
-    const rlen = _.random(4, 6);
-    const sel = this.#rndSel(isl, rlen);
-
-    let grw = 0;
-    let py = [];
-    for (let i = 0; i < rlen; i++) {
-      py.push(Math.random() * (550 - 250) + 250);
-    }
-    py.sort((a, b) => a - b);
-    for (let i = 1; i < py.length; i++) {
-      if (py[i] - py[i - 1] < 40) {
-        py[i] += Math.random() * (55 - 40) + 40;
-      }
-    }
-
-    let gp = [];
-    let ts = 0;
-    for (const { type, size, rwVal, quantity } of sel) {
-      if (et < this.#ct) {
-        break;
-      }
-      this.#vs = Math.floor(Math.random() * (4000 - 2500) + 2500);
-      grw += rwVal;
-
-      gp.push(
-        this.#rndDtTp(
-          type == "TRAP" ? 0 : type == "BONUS" ? 2 : 1,
-          et,
-          size,
-          type == "BONUS" ? rwVal : 0,
-          py[ts]
-        )
-      );
-      ts++;
-      this.#ct += this.#vs;
-    }
-
-    return {
-      gp,
-      grw,
-    };
-  }
-
   async play() {
     try {
-      const kfg = this.#gr.gameTag;
-      const { gp, grw } = this.#getGp(
-        this.#gr.cryptoMinerConfig.itemSettingList
-      );
+      const et = Date.now() + 45000;
+      const rt = Math.floor(Math.random() * 13) + 3;
+      let to = 0;
 
-      if (gp.length > 0) {
-        const dp = gp.join(";");
-        const gpEnc = this.#enc(dp, kfg);
-        await sleep(45, 45.07);
+      const gk = this.#gr.gameTag;
+      const ot = {
+        c: {}, // coin
+        t: {}, // trap
+        b: "", // bonus
+      };
+
+      for (const o of this.#gr.cryptoMinerConfig.itemSettingList) {
+        to += o.quantity;
+        if (o.type === "BONUS") {
+          ot.b = `${o.rewardValueList[0]},${o.size}`;
+        } else {
+          for (const rv of o.rewardValueList) {
+            if (parseInt(rv) > 0) {
+              ot.c[rv] = `${o.size},${o.quantity}`;
+            } else {
+              ot.t[Math.abs(parseInt(rv))] = `${o.size},${o.quantity}`;
+            }
+          }
+        }
+      }
+
+      const limit = Math.min(to, rt);
+      let rpt = Math.floor(Math.random() * limit) + 1;
+      if (rpt < 4) {
+        rpt = 4;
+      }
+
+      let pb = false;
+      let p = 0;
+      let gdp = [];
+      let sc = 0;
+
+      let py = [];
+      for (let i = 0; i < rpt + 5; i++) {
+        py.push(Math.random() * 300 + 250);
+      }
+
+      py.sort((a, b) => a - b);
+      for (let i = 1; i < py.length; i++) {
+        if (py[i] - py[i - 1] < 40) {
+          py[i] += Math.floor(Math.random() * 16) + 40;
+        }
+      }
+
+      let tt = 0;
+
+      while (et > Date.now() && p < rpt) {
+        this.rs = Math.floor(Math.random() * 1501) + 2500;
+        const rr = Math.floor(Math.random() * 100) + 1;
+
+        if (rr <= 20 && Object.keys(ot.t).length > 0) {
+          p++;
+          const rd = Object.keys(ot.t)[
+            Math.floor(Math.random() * Object.keys(ot.t).length)
+          ];
+          let [sz, qt] = ot.t[rd].split(",");
+          qt = parseInt(qt);
+
+          if (qt > 0) {
+            const dt = this.#rndDtTp(et, 0, parseInt(sz), 0, py[tt]);
+
+            if (dt !== null) {
+              tt++;
+              sc = Math.max(0, sc - parseInt(rd));
+              gdp.push(dt);
+              if (qt - 1 > 0) {
+                ot.t[rd] = `${sz},${qt - 1}`;
+              } else {
+                delete ot.t[rd];
+              }
+            } else {
+              break;
+            }
+          }
+        } else if (rr > 20 && rr <= 70 && Object.keys(ot.c).length > 0) {
+          p++;
+          const rd = Object.keys(ot.c)[
+            Math.floor(Math.random() * Object.keys(ot.c).length)
+          ];
+          let [sz, qt] = ot.c[rd].split(",");
+          qt = parseInt(qt);
+
+          if (qt > 0) {
+            const dt = this.#rndDtTp(et, 1, parseInt(sz), 0, py[tt]);
+
+            if (dt !== null) {
+              tt++;
+              sc += parseInt(rd);
+              gdp.push(dt);
+              if (qt - 1 > 0) {
+                ot.c[rd] = `${sz},${qt - 1}`;
+              } else {
+                delete ot.c[rd];
+              }
+            } else {
+              break;
+            }
+          }
+        } else if (rr > 70 && rr <= 100 && !pb) {
+          p++;
+          const [pts, sz] = ot.b.split(",");
+          const dt = this.#rndDtTp(et, 2, parseInt(sz), parseInt(pts), py[tt]);
+
+          if (dt !== null) {
+            tt++;
+            pb = true;
+            sc += parseInt(pts);
+            gdp.push(dt);
+          }
+        }
+
+        this.currTime += this.rs;
+      }
+
+      if (gdp.length > 0) {
+        const dpl = gdp.join(";");
+        const gp = this.#enc(dpl, gk);
         return {
-          payload: gpEnc,
-          log: grw,
-          decrypted: dp,
+          payload: gp,
+          log: sc,
+          debug: dpl,
         };
       } else {
         logger.error(
           `<ye>[${this.#bn}]</ye> | ${
             this.#sn
-          } | ⚠️ Error while generating game payload | Game payload length: <la>${
-            gp.length
-          }</la>`
+          } | Error while trying to get game data: Game data is empty`
         );
         return false;
       }
-    } catch (err) {
+    } catch (error) {
       logger.error(
         `<ye>[${this.#bn}]</ye> | ${
           this.#sn
-        } | ⚠️ Error while generating game payload: ${err.message}`
+        } | Unknown error while trying to get game data: ${error.message}`
       );
       return false;
     }
